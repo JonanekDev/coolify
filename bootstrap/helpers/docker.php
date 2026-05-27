@@ -187,6 +187,15 @@ function generateApplicationContainerName(Application $application, $pull_reques
 
     $consistent_container_name = $application->settings->is_consistent_container_name_enabled;
     $now = now()->format('Hisu');
+
+    if ($application->destination->server->isSwarm()) {
+        $consistent_container_name = true;
+        if ($pull_request_id !== 0 && $pull_request_id !== null) {
+            return 'app-pr-'.$pull_request_id;
+        }
+        return 'app';
+    }
+
     if ($pull_request_id !== 0 && $pull_request_id !== null) {
         return $application->uuid.'-pr-'.$pull_request_id;
     } else {
