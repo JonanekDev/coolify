@@ -72,14 +72,24 @@ class Logs extends Component
 
         try {
             if ($server->isSwarm()) {
-                $containers = collect([
-                    [
-                        'ID' => $this->resource->uuid,
-                        'Names' => $this->resource->uuid.'_'.$this->resource->uuid,
-                    ],
-                ]);
+                $services = instant_remote_process(["docker service ls --filter 'name={$this->resource->uuid}' --format '{{json .}}'"], $server, false);
+                $services = format_docker_command_output_to_json($services);
 
-                return $containers->toArray();
+                if ($services->count() === 0) {
+                    return collect([
+                        [
+                            'ID' => $this->resource->uuid,
+                            'Names' => $this->resource->uuid.'_'.$this->resource->uuid,
+                        ],
+                    ])->toArray();
+                }
+
+                return $services->map(function ($service) {
+                    return [
+                        'ID' => data_get($service, 'ID'),
+                        'Names' => data_get($service, 'Name'),
+                    ];
+                })->toArray();
             } else {
                 $containers = getCurrentApplicationContainerStatus($server, $this->resource->id, includePullrequests: true);
                 if ($containers && $containers->count() > 0) {

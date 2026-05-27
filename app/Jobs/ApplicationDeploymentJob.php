@@ -1812,7 +1812,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 $this->application_deployment_queue->addLogEntry('Rolling update started.');
                 $this->execute_remote_command(
                     [
-                        executeInDocker($this->deployment_uuid, "docker stack deploy --detach=true --with-registry-auth -c {$this->workdir}{$this->docker_compose_location} {$this->application->uuid}"),
+                        executeInDocker($this->deployment_uuid, "docker stack deploy --detach=true --prune --with-registry-auth -c {$this->workdir}{$this->docker_compose_location} {$this->application->uuid}"),
                     ],
                 );
                 $this->application_deployment_queue->addLogEntry('Rolling update completed.');
@@ -3313,12 +3313,12 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf");
             $timeout = isDev() ? 1 : 30;
             if ($skipRemove) {
                 $this->execute_remote_command(
-                    ["docker stop -t $timeout $containerName", 'hidden' => true, 'ignore_errors' => true]
+                    ["docker stop -t $timeout $containerName 2>/dev/null || true", 'hidden' => true, 'ignore_errors' => true]
                 );
             } else {
                 $this->execute_remote_command(
-                    ["docker stop -t $timeout $containerName", 'hidden' => true, 'ignore_errors' => true],
-                    ["docker rm -f $containerName", 'hidden' => true, 'ignore_errors' => true]
+                    ["docker stop -t $timeout $containerName 2>/dev/null || true", 'hidden' => true, 'ignore_errors' => true],
+                    ["docker rm -f $containerName 2>/dev/null || true", 'hidden' => true, 'ignore_errors' => true]
                 );
             }
         } catch (Exception $error) {
