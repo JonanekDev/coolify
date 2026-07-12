@@ -5261,6 +5261,8 @@ All notable changes to this project will be documented in this file.
 - *(swarm)* Support pre and post deployment commands on docker swarm via SSH DOCKER_HOST
 - *(swarm)* Bypass sudo for SSH DOCKER_HOST execution
 - *(swarm)* Fix bash syntax for command env bypass
+- *(swarm)* Construct correct container name for swarm nodes (Name.ID)
+- *(swarm)* Prevent truncated task IDs in docker stack ps output
 
 ### 💼 Other
 
@@ -6623,6 +6625,7 @@ All notable changes to this project will be documented in this file.
 - *(readme)* Fix PrivateAlps sponsor wording
 - *(readme)* Remove Context.dev sponsor
 - *(readme)* Add Seibert Group sponsor
+- Update changelog
 - Update changelog
 - Update changelog
 - Update changelog
