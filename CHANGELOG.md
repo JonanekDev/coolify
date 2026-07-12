@@ -5260,6 +5260,7 @@ All notable changes to this project will be documented in this file.
 - *(upgrade)* Preserve compose override expansion
 - *(swarm)* Support pre and post deployment commands on docker swarm via SSH DOCKER_HOST
 - *(swarm)* Bypass sudo for SSH DOCKER_HOST execution
+- *(swarm)* Fix bash syntax for command env bypass
 
 ### 💼 Other
 
@@ -6622,6 +6623,7 @@ All notable changes to this project will be documented in this file.
 - *(readme)* Fix PrivateAlps sponsor wording
 - *(readme)* Remove Context.dev sponsor
 - *(readme)* Add Seibert Group sponsor
+- Update changelog
 - Update changelog
 - Update changelog
 
