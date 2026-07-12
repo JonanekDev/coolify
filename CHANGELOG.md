@@ -5259,6 +5259,7 @@ All notable changes to this project will be documented in this file.
 - *(git)* Write deploy key to per-deployment path, not root's id_rsa (#10440)
 - *(upgrade)* Preserve compose override expansion
 - *(swarm)* Support pre and post deployment commands on docker swarm via SSH DOCKER_HOST
+- *(swarm)* Bypass sudo for SSH DOCKER_HOST execution
 
 ### 💼 Other
 
@@ -6621,6 +6622,7 @@ All notable changes to this project will be documented in this file.
 - *(readme)* Fix PrivateAlps sponsor wording
 - *(readme)* Remove Context.dev sponsor
 - *(readme)* Add Seibert Group sponsor
+- Update changelog
 - Update changelog
 
 ### ⚡ Performance
