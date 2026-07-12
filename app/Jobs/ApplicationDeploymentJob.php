@@ -4649,7 +4649,7 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf");
         
         $nodeName = data_get($container, 'Node');
         if ($this->server->isSwarm() && $nodeName) {
-            $exec = "DOCKER_HOST=ssh://{$this->server->user}@{$nodeName} docker exec {$containerName} {$cmd}";
+            $exec = "command DOCKER_HOST=ssh://{$this->server->user}@{$nodeName} docker exec {$containerName} {$cmd}";
         } else {
             $exec = "docker exec {$containerName} {$cmd}";
         }
@@ -4693,7 +4693,7 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf");
         
         $nodeName = data_get($container, 'Node');
         if ($this->server->isSwarm() && $nodeName) {
-            $exec = "DOCKER_HOST=ssh://{$this->server->user}@{$nodeName} docker exec {$containerName} {$cmd}";
+            $exec = "command DOCKER_HOST=ssh://{$this->server->user}@{$nodeName} docker exec {$containerName} {$cmd}";
         } else {
             $exec = "docker exec {$containerName} {$cmd}";
         }
