@@ -59,7 +59,7 @@ function getCurrentApplicationContainerStatus(Server $server, int $id, ?int $pul
         $application = \App\Models\Application::find($id);
         if ($application) {
             $uuid = $application->uuid;
-            $containers = instant_remote_process(["docker stack ps {$uuid} --filter 'desired-state=running' --format '{{json .}}' "], $server);
+            $containers = instant_remote_process(["docker stack ps {$uuid} --no-trunc --filter 'desired-state=running' --format '{{json .}}' "], $server);
             $containers = format_docker_command_output_to_json($containers);
             $containers = $containers->map(function ($container) {
                 $containerName = data_get($container, 'Name');
@@ -86,7 +86,7 @@ function getCurrentServiceContainerStatus(Server $server, int $id): Collection
         $service = \App\Models\Service::find($id);
         if ($service) {
             $uuid = $service->uuid;
-            $containers = instant_remote_process(["docker stack ps {$uuid} --filter 'desired-state=running' --format '{{json .}}' "], $server);
+            $containers = instant_remote_process(["docker stack ps {$uuid} --no-trunc --filter 'desired-state=running' --format '{{json .}}' "], $server);
             $containers = format_docker_command_output_to_json($containers);
             $containers = $containers->map(function ($container) {
                 $containerName = data_get($container, 'Name');
