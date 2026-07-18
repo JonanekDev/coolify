@@ -4587,6 +4587,17 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf");
 
         // Multi-container: require a container name to be specified
         if (empty($specifiedContainerName)) {
+            if ($this->server->isSwarm()) {
+                $serviceNames = $containers->map(function ($c) {
+                    $name = data_get($c, 'Names');
+                    return explode('.', $name)[0];
+                })->unique();
+
+                if ($serviceNames->count() === 1) {
+                    return $containers->first();
+                }
+            }
+
             $available = $containers->map(fn ($c) => data_get($c, 'Names'))->implode(', ');
             $this->application_deployment_queue->addLogEntry(
                 "{$commandType} command: Multiple containers found but no container name specified. Available: {$available}"
