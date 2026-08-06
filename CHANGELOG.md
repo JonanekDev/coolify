@@ -1425,6 +1425,60 @@ All notable changes to this project will be documented in this file.
 - *(ui)* Add search functionality for environment variables (#10421)
 - *(postgres)* Add internal database upgrade script
 - *(services)* Show template update timestamps
+- *(status)* Unify resource status badges
+- *(resources)* Add responsive mobile navigation menus
+- *(resources)* Show mobile action buttons
+- *(subscription)* Add Stripe action controls
+- *(project)* Add mobile action controls for resources
+- *(auth)* Restrict sensitive data visibility for team members
+- *(resource-details)* Make copy fields visible and accessible
+- *(mcp)* Add per-team server toggle
+- *(service)* Add Inngest one-click service template (#10612)
+- *(mcp)* Add per-team server toggle (#10771)
+- *(api)* Add REST endpoints for destinations
+- *(api)* Add REST endpoints for destinations (#10405)
+- *(api)* Add is_preview_deployments_enabled on applications
+- *(api)* Allow preview deployments on app create
+- *(api)* Add endpoint to retrieve database logs by UUID
+- *(api)* Add endpoints to retrieve service logs by UUID for each container
+- *(api)* Add 'show_timestamps' parameter to logs endpoints
+- Add internal endpoint controls
+- *(registry)* Add configurable docker registry url (#9017)
+- *(dev)* Add Lima testing server fixtures (#10844)
+- *(api)* Add endpoint to retrieve database and service logs (#6293)
+- *(api)* Add is_preview_deployments_enabled on applications (#10188)
+- *(hetzner)* Add endpoints and UI for attaching firewalls and internal networks to the Server Creation dialog
+- *(hetzner)* Add support for enabling backups during server creation
+- *(api)* Add tag management endpoints for applications, databases, and services
+- *(api)* Add tags to resource creation
+- *(api)* Add tag management endpoints for applications, databases, and services (#9275)
+- *(cloud-provider)* Add support for Hetzner firewalls, internal networks and backups when creating the Server (#9646)
+- *(api)* Service Application Management API (#9249)
+- *(api)* Add ownedByCurrentTeamAPI scope to Environment model
+- *(api)* Add shared helper for moving resources between environments
+- *(api)* Add POST /move endpoints for applications, databases, and services
+- *(api)* Add POST /move endpoints to relocate resources between environments (#8968)
+- Harden auth flows and server mobile navigation
+- *(vultr)* Add cloud provider integration (#10533)
+- *(digitalocean)* Add droplet provisioning support
+- *(digitalocean)* Add droplet provisioning support (#10871)
+- *(server)* Add dedicated server creation flow
+- *(security)* Add editable cloud credential pages
+- *(server)* Add private key creation to IP server form
+- *(server)* Improve private key and cloud link flows
+- *(notifications)* Deduplicate repeated email alerts
+- *(cdn)* Sync release metadata through BunnyCDN
+- *(templates)* Bump alexandrie to version 8.10.0
+- *(services)* Bump alexandrie to version 8.10.0 (#10864)
+- *(api)* Add application settings to application endpoints
+- *(api)* Add service database management endpoints
+- Add ClickHouse backups and cloud ops tools
+- *(api)* Require POST for state-changing endpoints
+- *(backups)* Add scheduled persistent volume backups
+- *(backups)* Support scheduled backups for application storage targets
+- *(api)* Add volume backup schedule delete endpoints
+- *(backups)* Add scheduled storage volume backups (#10946)
+- *(services)* Shared Redis cache for service templates (#11094)
 
 ### 🐛 Bug Fixes
 
@@ -5264,6 +5318,145 @@ All notable changes to this project will be documented in this file.
 - *(swarm)* Construct correct container name for swarm nodes (Name.ID)
 - *(swarm)* Prevent truncated task IDs in docker stack ps output
 - *(swarm)* Gracefully handle single-service multiple containers
+- *(api)* Hide sensitive fields by default, expose via makeVisible for privileged tokens
+- *(api)* Expose nested server secrets for privileged tokens
+- *(api)* Hide application compose PR fields
+- *(api)* Gate service server secrets by sensitive scope
+- *(api)* Hide sensitive fields by default
+- *(api)* Expose cloud tokens with sensitive read access
+- *(api)* Hide nested server secrets from read tokens
+- *(service)* Limit Grafana extra fields to Grafana images
+- *(service)* Limit Grafana extra fields to Grafana images (#10562)
+- *(logs)* Constrain activity monitor output width
+- *(previews)* Clean up closed PR previews after update failures
+- *(previews)* Clean up closed PR previews after update failures (#10180)
+- *(upgrade)* Hide upgrade labels in collapsed sidebar
+- *(auth)* Enforce authorization checks across API and Livewire components
+- *(auth)* Enforce dashboard authorization and improve team deletion
+- *(auth)* Enforce proxy authorization checks in server navbar
+- *(auth)* Enforce authorization checks in Livewire components
+- *(storage)* Add error handling for S3 connection error notifications
+- *(policies)* Ensure instance-level databases use root team
+- *(security)* Prevent snapshot replay in API token permission checks
+- *(auth)* Resolve current team from Sanctum token for API requests
+- *(auth)* Preserve Sanctum token prefix for lookups
+- *(security)* Enforce team access on mutable actions
+- *(security)* Hide notification secrets from non-admins
+- *(ui)* Standardize permission denial callouts
+- *(auth)* Restrict Sentinel access and register S3 policy
+- *(auth)* Enforce policies across API and Livewire (#8628)
+- *(sidebar)* Remove theme switcher from sidebar navbar
+- *(api)* Gate sensitive storage and GitHub fields
+- *(subscription)* Clamp dynamic quantity to MIN_SERVER_LIMIT on update
+- Harden database backup imports
+- *(deploy)* Skip logging deploy key commands
+- *(deploy)* Preserve deploy key command metadata
+- *(deploy)* Preserve private key command metadata (#10795)
+- *(template)* Magic variable used on inngest changed to hex magic variable
+- *(template)* Removed volume, changed inggest url variable and limited to version inngest/inngest:v1.27.0
+- *(service)* Correct Convex origin env vars and expose HTTP actions port
+- *(service)* Correct Convex origin env vars and expose HTTP actions port (#10646)
+- *(railpack)* Interpolate build-time env variables by sourcing build-time .env
+- *(railpack)* Create empty build-time env file
+- *(railpack)* Interpolate build-time env variables by sourcing build… (#10768)
+- Align resource creation permissions
+- Improve s3 storage handling
+- Improve team resource route handling
+- *(backups)* Require valid S3 storage selection
+- *(sidebar)* Center unread badge in settings menu
+- *(backups)* Default S3 storage for backup schedules
+- *(api/destinations)* Use getTeamIdFromToken() like other Api controllers
+- *(api/destinations)* Use whereHas instead of ownedByCurrentTeamAPI for back-compat
+- *(api)* Block invalid destination types and service deletions
+- *(api)* Enforce destination access and cleanup networks
+- *(api)* Handle destination create races as conflicts
+- *(api)* Avoid lazy loading nested server secrets
+- *(api)* Hide nested server secrets in database responses
+- *(api)* Expose sensitive fields for privileged tokens
+- Accept underscores in domain hostnames for API URL validation
+- *(domains)* Reject non-HTTP URL schemes
+- *(auth)* Validate invitation magic link tokens
+- Improve application URL handling
+- *(repo)* Remove beta from placeholder values on issue template
+- *(repo)* Remove bounty and beta referrences on contributors guidelines
+- *(webhooks)* Resolve hostnames using custom DNS servers
+- *(services)* Preserve template keys for selection
+- *(env-vars)* Avoid service preview variable lookups (#10837)
+- *(security)* Validate application domains safely
+- *(railpack)* Isolate buildx from Docker client env (#10840)
+- *(team)* Keep invite link root element
+- *(auth)* Preserve invite login with database sessions
+- *(auth)* Validate invitation magic link tokens (#10651)
+- *(server)* Hide sentinel status before validation
+- *(parser)* Preserve file volume state (#10843)
+- *(git)* Use cloud install path for ghe apps
+- *(github)* Sync app slug before building install URL
+- *(github)* Sync pending app credentials before slug lookup
+- *(github)* Sync app slug before generating installation path
+- *(git)* Use cloud install path for ghe apps (#10576)
+- *(api)* Return deployment UUID strings directly
+- *(ray)* Remove Ray debug hooks from runtime (#10847)
+- *(env)* Preserve empty service variable values (#10850)
+- *(api)* Normalize log endpoint query handling
+- *(deploy)* Cast force param as boolean to prevent cache bust on every deploy
+- *(deploy)* Cast force param as boolean to prevent cache bust on every deploy (#9909)
+- Only strip git_host from repository_url when git_host is github.com
+- Only strip git_host from repository_url when git_host is github.com (#10274)
+- *(api)* Allow source commit build setting
+- *(api)* Document source commit build option
+- *(api)* Preserve source commit flag until cleanup
+- *(api)* Allow source commit build setting (#10551)
+- *(parsers)* Remove unused $svc variable in dockercompose domain loop
+- *(parser)* Populate compose domains from service env keys
+- *(parsers)* Populate docker_compose_domains for API-created Docker Compose apps (#9300)
+- Accept underscores in domain hostnames for API URL validation (#10663)
+- *(github)* Derive app API URLs from HTML hosts
+- *(github)* Keep provided api_url on GitHub app updates
+- *(github)* Preserve custom app API URLs
+- *(github)* Reject malformed app URL origins
+- *(github)* Derive API URLs from GitHub HTML hosts (#10610)
+- *(api)* Hide sensitive fields by default, expose via makeVisible for privileged tokens (#9893)
+- *(api)* Return array from removeSensitiveData for service applications list
+- *(hetzner)* Secure token-backed option fetches
+- *(ui)* Constrain helper popup within viewport
+- *(hetzner)* Require at least one public IP protocol
+- *(service-apps)* Harden updates and docker commands
+- *(docker)* Escape container status commands
+- *(api)* Stop auditing sentinel metric pushes
+- *(test)* Align test setup with project conventions
+- *(api)* Authorize target environment moves
+- *(api)* Audit moved resources
+- *(vultr)* Validate public network and token scope
+- Align server mobile menu spacing
+- *(vultr)* Remove duplicate deletion error log
+- *(github)* Skip PR previews from head commit flags
+- *(github)* Skip opened PR previews with skip ci
+- *(github)* Honor skip flags for PR preview syncs (#10873)
+- *(meta)* Update social preview image URL
+- *(meta)* Serve releases metadata from Coollabs CDN
+- *(servers)* Retain cloud instances awaiting IPs
+- *(servers)* Isolate cloud status checks from SSH checks
+- *(deployment)* Detect application configuration changes consistently
+- *(environment-variable)* Keep delete button compact
+- *(environment-variable)* Align settings and actions responsively
+- *(api)* Correct service and application OpenAPI schemas
+- Harden Vultr create, Gmail identity, and provider retries
+- *(resources)* Clarify build server hosting restrictions (#10961)
+- *(dev)* Support root bind mounts and LAN Vite access
+- *(backups)* Stop containers during volume backup creation
+- *(backups)* Redirect to executions after manual backup queueing
+- *(backups)* Rename storage backup page heading
+- *(backups)* Move S3 retention settings to retention page
+- *(status)* Prevent health badge row height expansion
+- *(backups)* Show setup prompt when no S3 storage is available
+- *(backups)* Sync Backup Now with live database status
+- *(backups)* Pin S3 per volume execution and harden deletes
+- *(backups)* Allow volume backup delete without password when 2FA off
+- *(backups)* Retain volume backups without server
+- *(backups)* Enforce authorization and safe retention
+- *(traefik)* Track v3.7 security updates
+- *(traefik)* Track v3.7 and security patch updates (#11029)
+- *(domains)* Allow clearing resource domains without TypeError (#11083)
 
 ### 💼 Other
 
@@ -5758,6 +5951,8 @@ All notable changes to this project will be documented in this file.
 - Bump cloudflare-ddns to v2.1.2
 - Support allowlisted private API inbox webhooks
 - *(Update)* Update Gitea runner image to version 1.0.7
+- *(service)* Inngest one click service template
+- *(api)* Add service-applications API to manage service applications
 
 ### 🚜 Refactor
 
@@ -6452,6 +6647,15 @@ All notable changes to this project will be documented in this file.
 - *(database)* Split import form into Livewire child
 - *(ui)* Use callout components for application metrics alerts
 - *(migration)* Align migration name with actual schema change
+- *(auth)* Enforce team member authorization across app
+- *(auth)* Enforce authorization checks across livewire components
+- *(policies)* Add uploadBackup ability and enforce it on backup upload endpoint
+- *(api)* Update service logs endpoint to use sub service name
+- *(api)* Modify service sub container retrieval filter to use coolify.name
+- *(hetzner)* Move advanced options into dropdown
+- *(backups)* Consolidate volume backup retention columns
+- *(backups)* Centralize storage deletion guard
+- *(ui)* Remove deploy confirmation modals (#11023)
 
 ### 📚 Documentation
 
@@ -6631,6 +6835,13 @@ All notable changes to this project will be documented in this file.
 - Update changelog
 - Update changelog
 - Update changelog
+- Update changelog
+- Replace CLAUDE.md with AGENTS.md symlink
+- *(security)* Document deployment command trust boundary
+- *(readme)* Refresh sponsor listings
+- *(readme)* Serve sponsor images from Coollabs CDN
+- *(release)* Document SHA image promotion workflow
+- *(release)* Clarify branch strategy and SHA build flow
 
 ### ⚡ Performance
 
@@ -6664,6 +6875,7 @@ All notable changes to this project will be documented in this file.
 - *(teams)* Update switch team button styling
 - *(navbar)* Refine collapsed sidebar spacing
 - *(destination)* Capitalize server label
+- *(api)* Tighten nested server secret visibility checks
 
 ### 🧪 Testing
 
@@ -6693,6 +6905,22 @@ All notable changes to this project will be documented in this file.
 - *(api)* Add feature tests for server connection_timeout API
 - *(railpack)* Add API, Livewire UI tests and e2e smoke script
 - *(api)* Cover server private key updates
+- *(browser)* Expand server/project auth coverage
+- *(browser)* Cover resource settings persistence
+- *(browser)* Remove notification prompt helper
+- *(browser)* Improve "ResourceSettingsPersistence" assertions
+- *(auth)* Cover authorization scenarios for api and ui
+- Refresh api and job feature suites
+- Align mobile application actions expectations
+- *(auth)* Expect invitation link to use auth.link route
+- Cover case-sensitive application URL paths
+- *(deploy)* Assert force=false query param does not set force_rebuild
+- *(deploy)* Expand force param tests to cover all coercion cases
+- *(deploy)* Remove coercion test to keep PR focused on the fix
+- *(api)* Cover public git repository URL storage
+- Add move resource API tests
+- *(api)* Assert target env authorization on moves
+- *(github)* Cover PR previews without skip ci
 
 ### ⚙️ Miscellaneous Tasks
 
@@ -7544,6 +7772,31 @@ All notable changes to this project will be documented in this file.
 - Inspect staged changes
 - Inspect staged modal changes
 - *(logs)* Simplify log viewer XSS tests
+- Inspect staged changes for commit message
+- *(navbar)* Replace theme selector with cycle button
+- *(skills)* Add Nightwatch and MCP agent skills
+- *(boost)* Enable cloud config and agent skills
+- *(release)* Bump Coolify to 4.2.0
+- *(tests)* Reorganize feature suites and expand team auth coverage
+- Prepare for PR
+- *(ci)* Gate docs reminder comments on "Waiting for Docs PR" label
+- *(ci)* Gate docs reminder comments on "Waiting for Docs PR" label (#10659)
+- *(gitea-runner)* Patch version bump
+- *(service)* Gitea-runner patch version bump (#10566)
+- *(repo)* Improve contributor guidelines
+- *(repo)* Improve development guide
+- *(repo)* Improve bug report issue template
+- *(repo)* Improve enhancement bounty issue template
+- Improve contributor guidelines and issue templates (#8577)
+- Inspect PR context (#10834)
+- *(release)* Promote SHA-tagged images on release
+- *(release)* Promote SHA-tagged images on release (#10988)
+- Support main branch build and changelog workflows
+- Prepare for PR
+- Tag v4.x SHA images as edge
+- *(images)* Add edge tag for v4.x SHA builds (#11022)
+- Prepare for PR
+- Prepare for PR
 
 ### ◀️ Revert
 
