@@ -100,7 +100,6 @@ class Logs extends Component
             }
         } catch (\Exception $e) {
             // Log error but don't fail the entire operation
-            ray("Error loading containers for server {$server->name}: ".$e->getMessage());
 
             return [];
         }
